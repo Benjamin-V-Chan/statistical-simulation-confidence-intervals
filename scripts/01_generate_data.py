@@ -1,11 +1,16 @@
-"""
-# 1. Import necessary libraries: numpy, pandas, os.
-# 2. Define the main function:
-#    a. Set random seed for reproducibility.
-#    b. Define parameters: sample_size, true_mean, true_std.
-#    c. Generate random data from a normal distribution using np.random.normal.
-#    d. Create a pandas DataFrame with the generated data.
-#    e. Ensure the outputs/ directory exists; if not, create it.
-#    f. Save the DataFrame as a CSV file in the outputs/ folder.
-# 3. Call main() when the script is executed.
-"""
+import numpy as np
+import pandas as pd
+import os
+
+def main():
+    np.random.seed(42)
+    sample_size = 100
+    true_mean = 50
+    true_std = 10
+    data = np.random.normal(loc=true_mean, scale=true_std, size=sample_size)
+    df = pd.DataFrame({'value': data})
+    os.makedirs('outputs', exist_ok=True)
+    df.to_csv(os.path.join('outputs', 'generated_data.csv'), index=False)
+
+if __name__ == "__main__":
+    main()
